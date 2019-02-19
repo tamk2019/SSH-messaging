@@ -7,6 +7,8 @@ then
 	echo The file texti.txt does not exist.
 fi
 
+hostname -i
+
 echo Please input the text you want to append:
 read TEXT
 
