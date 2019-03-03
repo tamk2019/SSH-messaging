@@ -1,39 +1,48 @@
 #!/bin/bash
 
 
-if [ ! -f texti.txt ]
+IP_ADDRESS=192.168.0.104
+USER_NAME=pi
+PASSWORD=
+MYPASS=Tamk1234
+USERNAME=antti
+
+
+if [ -x "$(sshpass -V)" ]; then
+        echo "SSHPASS not found, installing..."    
+        sudo apt install sshpass -y
+fi
+
+
+
+if [ ! -f sshpass -p ${MYPASS} ssh -t ${USER_NAME}@${IP_ADDRESS} "echo ${PASSWORD} | texti.txt" ]
 then
-	echo tiedostoa ei ole: luodaan.
-	touch texti.txt
+	echo Creating text file...
+	sshpass -p ${MYPASS} ssh -t ${USER_NAME}@${IP_ADDRESS} "echo ${PASSWORD} | touch texti.txt"
 fi
  
-echo what text you want to append.
-read TEXT
-echo "$TEXT" >> texti.txt
-echo $TEXT, appended.
-
-tail texti.txt
 
 function add_text() {
-echo what text you want to append.
+echo write:.
 read TEXT
-echo "$TEXT" >> texti.txt
+sshpass -p ${MYPASS} ssh -t ${USER_NAME}@${IP_ADDRESS} "echo ${PASSWORD} | echo "[$USERNAME]: $TEXT " >> texti.txt"
 echo $TEXT, appended.
-
+shpass -p ${MYPASS} ssh -t ${USER_NAME}@${IP_ADDRESS} "echo ${PASSWORD} | tail texti.txt"
 }
 
-echo "do you want to add text? (y/n)"
-read VAL
+keypress=''
 
-if [ $VAL = "y" ];then 
+while [ "$keypress" = "" ]; do
+
+	sshpass -p ${MYPASS} ssh -t ${USER_NAME}@${IP_ADDRESS} "echo ${PASSWORD} | tail texti.txt"
+	sleep 1
 	add_text
-fi
+		
 
-if [ $VAL = "n" ];then
-	exit 0
-fi
+done	
 
-echo hei
+
+echo heihei
 
 
 
