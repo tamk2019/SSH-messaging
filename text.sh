@@ -1,11 +1,11 @@
 #!/bin/bash
 
 
-IP_ADDRESS=192.168.0.104
+IP_ADDRESS=89.106.37.88
 USER_NAME=pi
 PASSWORD=
 MYPASS=Tamk1234
-USERNAME=antti
+USERNAME=????
 
 
 if [ -x "$(sshpass -V)" ]; then
